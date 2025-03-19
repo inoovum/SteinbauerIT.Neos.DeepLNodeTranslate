@@ -4,7 +4,6 @@ namespace SteinbauerIT\Neos\DeepLNodeTranslate\Controller\Api;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Mvc\Controller\ActionController;
 use Neos\Flow\Mvc\View\JsonView;
-use SteinbauerIT\Neos\DeepLNodeTranslate\Domain\Service\DeepLService;
 use SteinbauerIT\Neos\DeepLNodeTranslate\Domain\Service\NodeService;
 
 final class TranslateController extends ActionController
@@ -13,16 +12,10 @@ final class TranslateController extends ActionController
     protected $defaultViewObjectName = JsonView::class;
 
     /**
-     * @Flow\Inject
      * @var NodeService
      */
+    #[Flow\Inject]
     protected $nodeService;
-
-    /**
-     * @Flow\Inject
-     * @var DeepLService
-     */
-    protected $deepLService;
 
     /**
      * @param string $nodeType
@@ -30,8 +23,8 @@ final class TranslateController extends ActionController
      * @param array $target
      * @param string $nodeIdentifier
      * @return void
-     * @Flow\SkipCsrfProtection
      */
+    #[Flow\SkipCsrfProtection]
     public function translateAction(string $nodeType, array $source, array $target, string $nodeIdentifier): void
     {
         $this->nodeService->translateInline(json_decode($source[0], true), json_decode($target[0], true), $nodeIdentifier);
@@ -45,11 +38,11 @@ final class TranslateController extends ActionController
      * @param string $targetDimensionKey
      * @param string $targetDimension
      * @return void
-     * @Flow\SkipCsrfProtection
      */
+    #[Flow\SkipCsrfProtection]
     public function translateNodeAndTheirChildrenByIdentifierAction(string $nodeIdentifier, string $sourceDimensionKey, string $sourceDimension, string $targetDimensionKey, string $targetDimension): void
     {
-        $this->nodeService->translateNodeAndTheirChildren($nodeIdentifier, [$sourceDimensionKey => [$sourceDimension]], [$targetDimensionKey => [$targetDimension]]);
+        $this->nodeService->translateNodeAndTheirChildren($nodeIdentifier, [$sourceDimensionKey => $sourceDimension], [$targetDimensionKey => $targetDimension]);
         $this->view->assign('value', ['response' => true]);
     }
 

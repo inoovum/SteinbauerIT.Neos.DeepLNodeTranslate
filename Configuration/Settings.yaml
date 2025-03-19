@@ -1,8 +1,11 @@
 Neos:
   Flow:
+    error:
+      debugger:
+        recursionLimit: 90
     mvc:
       routes:
-        'SteinbauerIT.Neos.DeepLNodeTranslate': true
+        SteinbauerIT.Neos.DeepLNodeTranslate: true
     security:
       authentication:
         providers:
@@ -16,19 +19,19 @@ Neos:
     modules:
       deepltranslate:
         label: 'DeepL Translate'
-        controller: '\Neos\Neos\Controller\Module\ManagementController'
+        controller: \Neos\Neos\Controller\Module\ManagementController
         description: 'DeepL Translate backend module'
         icon: 'fas fa-language'
-        resource: 'Neos_Neos_Backend_Module_Management'
+        resource: Neos_Neos_Backend_Module_Management
         submodules:
           order:
-            label: 'Translation'
-            controller: '\SteinbauerIT\Neos\DeepLNodeTranslate\Controller\Module\DeepLController'
+            label: Translation
+            controller: \SteinbauerIT\Neos\DeepLNodeTranslate\Controller\Module\DeepLController
             description: 'Translate Neos nodetype text with DeepL'
             icon: 'fas fa-language'
             actions:
               index:
-                label: 'Translations'
+                label: Translations
                 title: 'Translate Neos nodetype text'
             additionalResources:
               styleSheets:
@@ -36,42 +39,13 @@ Neos:
     Ui:
       resources:
         stylesheets:
-          'SteinbauerIT.Neos.DeepLNodeTranslate':
+          SteinbauerIT.Neos.DeepLNodeTranslate:
             resource: '${"resource://SteinbauerIT.Neos.DeepLNodeTranslate/Public/Plugin.css"}'
         javascript:
-          'SteinbauerIT.Neos.DeepLNodeTranslate':
+          SteinbauerIT.Neos.DeepLNodeTranslate:
             resource: '${"resource://SteinbauerIT.Neos.DeepLNodeTranslate/Public/Plugin.js"}'
       frontendConfiguration:
         'SteinbauerIT.Neos.DeepLNodeTranslate:Role': '${Security.hasRole("Neos.Neos:Administrator") ? true : false}'
         'SteinbauerIT.Neos.DeepLNodeTranslate:NodeTypes': '${Configuration.setting("SteinbauerIT.Neos.DeepLNodeTranslate.nodeTypes")}'
         'SteinbauerIT.Neos.DeepLNodeTranslate:Dimensions': '${Configuration.setting("Neos.ContentRepository.contentDimensions")}'
         'SteinbauerIT.Neos.DeepLNodeTranslate:Configuration': '${Configuration.setting("SteinbauerIT.Neos.DeepLNodeTranslate.configuration")}'
-
-#SteinbauerIT:
-#  Neos:
-#    DeepLNodeTranslate:
-#      configuration:
-#        sourceDimensionKeys:
-#          - language
-#        targetDimensionKeys:
-#          - language
-#        sourceDimensions:
-#          language:
-#            - de
-#            - en
-#        targetDimensions:
-#          language:
-#            - de
-#            - en
-#      authKey: 'your-auth-key'
-#      nodeTypes:
-#        'Neos.NodeTypes:Headline':
-#          label: Headline
-#          properties:
-#            - title
-#        'Neos.NodeTypes:Text':
-#          label: Text
-#          properties:
-#            - text
-#      prefer:
-#        en: 'en-GB'

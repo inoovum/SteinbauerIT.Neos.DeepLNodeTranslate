@@ -5,22 +5,20 @@ use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
 use SteinbauerIT\Neos\DeepLNodeTranslate\Domain\Service\NodeService;
 
-/**
- * @Flow\Scope("singleton")
- */
+#[Flow\Scope('singleton')]
 class TranslateCommandController extends CommandController
 {
 
     /**
-     * @Flow\Inject
      * @var NodeService
      */
+    #[Flow\Inject]
     protected $nodeService;
 
     /**
-     * @Flow\InjectConfiguration(package="SteinbauerIT.Neos.DeepLNodeTranslate", path="nodeTypes")
      * @var array
      */
+    #[Flow\InjectConfiguration(package: 'SteinbauerIT.Neos.DeepLNodeTranslate', path: 'nodeTypes')]
     protected $nodeTypes = [];
 
     /**
@@ -35,7 +33,7 @@ class TranslateCommandController extends CommandController
      */
     public function nodesCommand(string $nodeType, string $sourceDimensionKey, string $sourceDimension, string $targetDimensionKey, string $targetDimension)
     {
-        $this->nodeService->translateNodes($nodeType, [$sourceDimensionKey => [$sourceDimension]], [$targetDimensionKey => [$targetDimension]]);
+        $this->nodeService->translateNodes($nodeType, [$sourceDimensionKey => $sourceDimension], [$targetDimensionKey => $targetDimension]);
         $this->outputLine($nodeType . ' nodes translated from ' . $sourceDimension . ' to ' . $targetDimension);
     }
 
@@ -52,7 +50,7 @@ class TranslateCommandController extends CommandController
     {
         $nodeTypes = $this->nodeTypes;
         foreach ($nodeTypes as $nodeTypeKey => $nodeType) {
-            $this->nodeService->translateNodes($nodeTypeKey, [$sourceDimensionKey => [$sourceDimension]], [$targetDimensionKey => [$targetDimension]]);
+            $this->nodeService->translateNodes($nodeTypeKey, [$sourceDimensionKey => $sourceDimension], [$targetDimensionKey => $targetDimension]);
             $this->outputLine($nodeTypeKey . ' nodes translated from ' . $sourceDimension . ' to ' . $targetDimension);
         }
     }
@@ -69,23 +67,7 @@ class TranslateCommandController extends CommandController
      */
     public function nodeCommand(string $nodeIdentifier, string $sourceDimensionKey, string $sourceDimension, string $targetDimensionKey, string $targetDimension)
     {
-        $this->nodeService->translateNode($nodeIdentifier, [$sourceDimensionKey => [$sourceDimension]], [$targetDimensionKey => [$targetDimension]]);
-        $this->outputLine($nodeIdentifier . ' translated from ' . $sourceDimension . ' to ' . $targetDimension);
-    }
-
-    /**
-     * Translate node
-     *
-//     * @param string $nodeIdentifier
-//     * @param string $sourceDimensionKey
-//     * @param string $sourceDimension
-//     * @param string $targetDimensionKey
-//     * @param string $targetDimension
-     * @return void
-     */
-    public function nodeByIdentifierAndTheirChildrenCommand(string $nodeIdentifier, string $sourceDimensionKey, string $sourceDimension, string $targetDimensionKey, string $targetDimension)
-    {
-        $this->nodeService->translateNodeAndTheirChildren($nodeIdentifier, [$sourceDimensionKey => [$sourceDimension]], [$targetDimensionKey => [$targetDimension]]);
+        $this->nodeService->translateNode($nodeIdentifier, [$sourceDimensionKey => $sourceDimension], [$targetDimensionKey => $targetDimension]);
         $this->outputLine($nodeIdentifier . ' translated from ' . $sourceDimension . ' to ' . $targetDimension);
     }
 

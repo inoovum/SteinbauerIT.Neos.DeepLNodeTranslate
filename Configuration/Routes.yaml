@@ -1,15 +1,14 @@
 -
-  uriPattern: 'neos/api/deepl/translate'
+  uriPattern: neos/api/deepl/translate
   defaults:
-    '@controller': 'Api\Translate'
-    '@package': 'SteinbauerIT.Neos.DeepLNodeTranslate'
-    '@action': 'translate'
-    '@format': 'json'
-
+    '@controller': Api\Translate
+    '@package': SteinbauerIT.Neos.DeepLNodeTranslate
+    '@action': translate
+    '@format': json
 -
-  uriPattern: 'neos/api/deepl/translatenodeandtheirchildrenbyidentifier'
+  uriPattern: neos/api/deepl/translatenodeandtheirchildrenbyidentifier
   defaults:
-    '@controller': 'Api\Translate'
-    '@package': 'SteinbauerIT.Neos.DeepLNodeTranslate'
-    '@action': 'translateNodeAndTheirChildrenByIdentifier'
-    '@format': 'json'
+    '@controller': Api\Translate
+    '@package': SteinbauerIT.Neos.DeepLNodeTranslate
+    '@action': translateNodeAndTheirChildrenByIdentifier
+    '@format': json

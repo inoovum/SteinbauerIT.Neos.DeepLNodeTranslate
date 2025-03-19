@@ -12,9 +12,9 @@ final class DeepLController extends ActionController
     protected $defaultViewObjectName = FusionView::class;
 
     /**
-     * @Flow\Inject
      * @var NodeService
      */
+    #[Flow\Inject]
     protected $nodeService;
 
     /**

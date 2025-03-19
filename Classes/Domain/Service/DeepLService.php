@@ -8,16 +8,22 @@ class DeepLService
 {
 
     /**
-     * @Flow\InjectConfiguration(package="SteinbauerIT.Neos.DeepLNodeTranslate", path="authKey")
      * @var string
      */
+    #[Flow\InjectConfiguration(package: 'SteinbauerIT.Neos.DeepLNodeTranslate', path: 'authKey')]
     protected $authKey;
 
     /**
-     * @Flow\InjectConfiguration(package="SteinbauerIT.Neos.DeepLNodeTranslate", path="prefer")
      * @var array
      */
+    #[Flow\InjectConfiguration(package: 'SteinbauerIT.Neos.DeepLNodeTranslate', path: 'prefer')]
     protected $prefer = [];
+
+    /**
+     * @var array
+     */
+    #[Flow\InjectConfiguration(package: 'SteinbauerIT.Neos.DeepLNodeTranslate', path: 'normalizeSource')]
+    protected $normalizeSource = [];
 
     /**
      * @param string $sourceValue
@@ -29,7 +35,7 @@ class DeepLService
     {
         $translator = new Translator($this->authKey);
         if(!empty($sourceValue)) {
-            $result = $translator->translateText($sourceValue, $sourceLanguage, $this->setPreferredLanguageShortcut($targetLanguage), ['tag_handling' => 'html']);
+            $result = $translator->translateText($sourceValue, $this->normalizeSource($sourceLanguage), $this->setPreferredLanguageShortcut($targetLanguage), ['tag_handling' => 'html']);
             return $result->text;
         }
         return $sourceValue;
@@ -45,6 +51,18 @@ class DeepLService
             return $this->prefer[$targetLanguage];
         }
         return $targetLanguage;
+    }
+
+    /**
+     * @param string $sourceLanguage
+     * @return string
+     */
+    private function normalizeSource(string $sourceLanguage): string
+    {
+        if(array_key_exists($sourceLanguage, $this->normalizeSource)) {
+            return $this->normalizeSource[$sourceLanguage];
+        }
+        return $sourceLanguage;
     }
 
 }

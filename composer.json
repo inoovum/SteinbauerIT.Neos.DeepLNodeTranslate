@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "neos/neos": "^7.0 || ^8.0 || ^8.1 || ^8.2 || ^8.3",
-        "neos/neos-ui": "^7.0 ||^8.0 || ^8.1 || ^8.2 || ^8.3",
+        "neos/neos": "^9.0",
+        "neos/neos-ui": "^9.0",
         "deeplcom/deepl-php": "^v1.3.0"
     },
     "autoload": {

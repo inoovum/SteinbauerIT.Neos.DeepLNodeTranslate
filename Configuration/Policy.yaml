@@ -4,7 +4,6 @@ privilegeTargets:
       matcher: 'method(SteinbauerIT\Neos\DeepLNodeTranslate\Controller\Module\DeepLController->.*Action())'
     'SteinbauerIT.Neos.DeepLNodeTranslate:Api.TranslateControllerActions':
       matcher: 'method(SteinbauerIT\Neos\DeepLNodeTranslate\Controller\Api\TranslateController->.*Action())'
-
 roles:
   'Neos.Neos:AbstractEditor':
     privileges:

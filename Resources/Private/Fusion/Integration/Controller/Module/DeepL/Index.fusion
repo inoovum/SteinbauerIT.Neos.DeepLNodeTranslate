@@ -1,3 +1,7 @@
+// TODO 9.0 migration: Line 30: You very likely need to rewrite "VARIABLE.label" to "Neos.Node.label(VARIABLE)". We did not auto-apply this migration because we cannot be sure whether the variable is a Node.
+// TODO 9.0 migration: Line 38: You very likely need to rewrite "VARIABLE.label" to "Neos.Node.label(VARIABLE)". We did not auto-apply this migration because we cannot be sure whether the variable is a Node.
+// TODO 9.0 migration: Line 66: You very likely need to rewrite "VARIABLE.label" to "Neos.Node.label(VARIABLE)". We did not auto-apply this migration because we cannot be sure whether the variable is a Node.
+// TODO 9.0 migration: Line 68: You very likely need to rewrite "VARIABLE.label" to "Neos.Node.label(VARIABLE)". We did not auto-apply this migration because we cannot be sure whether the variable is a Node.
 SteinbauerIT.Neos.DeepLNodeTranslate.Module.DeepLController.index = SteinbauerIT.Neos.DeepLNodeTranslate:Module.DeepL.Index
 
 prototype(SteinbauerIT.Neos.DeepLNodeTranslate:Module.DeepL.Index) < prototype(Neos.Fusion:Component) {

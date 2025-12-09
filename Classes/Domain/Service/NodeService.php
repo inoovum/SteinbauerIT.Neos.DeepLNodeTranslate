@@ -83,6 +83,7 @@ class NodeService
             foreach ($nodes as $node) {
                 $translatedProperties = $this->translateProperties((array) $node->getProperties(), $this->getDefinedPropertiesForNodeTypeFromConfiguration($node->getNodeType()->getName()), $source, $target);
                 $this->createTranslatedNode($node, $translatedProperties, $source, $target);
+                sleep(5);
             }
         }
     }
